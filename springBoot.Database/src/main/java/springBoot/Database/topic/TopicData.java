@@ -1,15 +1,15 @@
 package springBoot.Database.topic;
 
-public class Topic {
+public class TopicData {
 
 	private String id;
 	private String name;
 	private String description;
 
-	public Topic() {
+	public TopicData() {
 	}
 
-	public Topic(String id, String name, String description) {
+	public TopicData(String id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
