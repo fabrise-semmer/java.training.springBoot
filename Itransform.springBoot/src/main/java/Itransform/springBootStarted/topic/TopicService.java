@@ -25,4 +25,10 @@ public class TopicService {
 				.get(); // return the id found
 	}
 
+	public void addTopic(Topic topic) {
+		topics.add(topic);		
+	}
+
+	
+
 }
