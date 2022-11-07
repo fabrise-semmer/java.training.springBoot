@@ -1,15 +1,15 @@
-package springBootStarted.topic;
+package springBoot.Database.topic;
 
-public class TopicData {
+public class TopicDatabase {
 
 	private String id;
 	private String name;
 	private String description;
 
-	public TopicData() {
+	public TopicDatabase() {
 	}
 
-	public TopicData(String id, String name, String description) {
+	public TopicDatabase(String id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,7 +36,4 @@ public class TopicData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-
 }
