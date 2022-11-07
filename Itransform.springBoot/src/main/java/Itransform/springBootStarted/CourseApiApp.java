@@ -1,4 +1,4 @@
-package Itransform.springBoot;
+package Itransform.springBootStarted;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 //tell this is a spring class, and this is the start
 @SpringBootApplication
-@ComponentScan(basePackages = "Itransform.springBootStarted.hello, Itransform.springBootStarted.topic")
+// if have different names packages add the annotation @ComponentScan
+//@ComponentScan(basePackages = "Itransform.springBootStarted.hello, Itransform.springBootStarted.topic")
 public class CourseApiApp {
 
 	public static void main(String[] args) {
