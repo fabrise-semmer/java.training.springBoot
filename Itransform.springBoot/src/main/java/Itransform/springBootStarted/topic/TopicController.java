@@ -1,22 +1,23 @@
 package Itransform.springBootStarted.topic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TopicController {
-
+	
+	// mark to Spring that need dependency injection
+	// when Spring creates an instance of TopicController he is going to look all the members,
+	// and he is going to see if any of them has a dependency of TopicService, and it will inject that
+	@Autowired 	
+	private TopicService topicService;
+	
 	@RequestMapping("/topics")
-		public List<Topic> getAllTopics () {
-		// MVC automatically convert this list to a JSON
-		return new ArrayList<>(Arrays.asList(
-				new Topic("spring", "Spring Framework", "Spring Framework Description"),
-				new Topic("java", "Core Java", "Core Java Description"),
-				new Topic("javascript", "JavaScript", "JavaScript Description")));
+	public List<Topic> getAllTopics() {
+		return topicService.getAllTopics();
 	}
 	
 }
