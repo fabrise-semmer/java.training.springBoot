@@ -18,4 +18,11 @@ public class TopicService {
 		return topics;
 	}
 
+	public Topic getTopic(String id) {
+		return topics.stream()
+				// filter by the id – compare the id in the list with the id in the argument
+				.filter(t -> t.getId().equals(id)).findFirst() // find the very first item
+				.get(); // return the id found
+	}
+
 }
