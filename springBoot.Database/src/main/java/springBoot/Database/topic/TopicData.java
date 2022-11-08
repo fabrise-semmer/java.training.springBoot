@@ -1,7 +1,15 @@
 package springBoot.Database.topic;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+//to map the class to database - create a table Topic
+@Entity
 public class TopicData {
 
+	//the three columns of the table Topic
+	//to identify the column ID as the primary key
+	@Id
 	private String id;
 	private String name;
 	private String description;
