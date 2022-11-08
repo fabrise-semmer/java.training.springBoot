@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TopicDataService {
+
+	// mark to Spring that need dependency injection
+	@Autowired
+	private TopicRepository topicRepository;
 
 	private List<TopicData> topics = new ArrayList<>(
 			Arrays.asList(new TopicData("spring", "Spring Framework", "Spring Framework Description"),
@@ -15,34 +20,25 @@ public class TopicDataService {
 					new TopicData("javascript", "JavaScript", "JavaScript Description")));
 
 	public List<TopicData> getAllTopics() {
+		List<TopicData> topics = new ArrayList<>();
+		topicRepository.findAll().forEach(topics::add);
 		return topics;
 	}
 
 	public TopicData getTopic(String id) {
-		return topics.stream()
-				// filter by the id – compare the id in the list with the id in the argument
-				.filter(t -> t.getId().equals(id)).findFirst() // find the very first item
-				.get(); // return the id found
+		return topicRepository.findById(id).get();
 	}
 
 	public void addTopic(TopicData topic) {
-		topics.add(topic);		
+		topicRepository.save(topic);
 	}
 
 	public void updateTopic(String id, TopicData topic) {
-		for (int i = 0; i < topics.size(); i++) {
-			TopicData t = topics.get(i);
-			if (t.getId().equals(id)) {
-				topics.set(i, topic);
-				return;
-			}
-		}
+		topicRepository.save(topic);
 	}
 
 	public void deleteTopic(String id) {
-		topics.removeIf(t -> t.getId().equals(id));
+		topicRepository.deleteById(id);
 	}
-
-	
 
 }
