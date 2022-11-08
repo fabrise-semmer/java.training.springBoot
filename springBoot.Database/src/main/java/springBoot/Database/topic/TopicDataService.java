@@ -14,11 +14,6 @@ public class TopicDataService {
 	@Autowired
 	private TopicRepository topicRepository;
 
-	private List<TopicData> topics = new ArrayList<>(
-			Arrays.asList(new TopicData("spring", "Spring Framework", "Spring Framework Description"),
-					new TopicData("java", "Core Java", "Core Java Description"),
-					new TopicData("javascript", "JavaScript", "JavaScript Description")));
-
 	public List<TopicData> getAllTopics() {
 		List<TopicData> topics = new ArrayList<>();
 		topicRepository.findAll().forEach(topics::add);
