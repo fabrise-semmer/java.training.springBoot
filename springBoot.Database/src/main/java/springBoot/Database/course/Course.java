@@ -2,26 +2,29 @@ package springBoot.Database.course;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-//to map the class to database - create a table Topic
+import springBoot.Database.topic.TopicData;
+
 @Entity
 public class Course {
 
-	//the three columns of the table Topic
-	//to identify the column ID as the primary key
 	@Id
 	private String id;
 	private String name;
 	private String description;
+	
+	private TopicData topicData;
 
 	public Course() {
 	}
 
-	public Course(String id, String name, String description) {
+	public Course(String id, String name, String description, String topicId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.topicData = new TopicData(topicId, "", "");
 	}
 
 	public String getId() {
@@ -44,5 +47,14 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public TopicData getTopicData() {
+		return topicData;
+	}
+
+	public void setTopicData(TopicData topicData) {
+		this.topicData = topicData;
+	}
+
 	
 }

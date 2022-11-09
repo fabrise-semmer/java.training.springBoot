@@ -9,41 +9,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import springBoot.Database.topic.TopicData;
+
 @RestController
 public class CourseController {
 	
-	// mark to Spring that need dependency injection
-	// when Spring creates an instance of TopicController he is going to look all the members,
-	// and he is going to see if any of them has a dependency of TopicService, and it will inject that
 	@Autowired 	
-	private CourseService topicService;
+	private CourseService courseService;
 	
 	@RequestMapping("/datatopics")
 	public List<Course> getAllTopics() {
-		return topicService.getAllTopics();
-	}
-	
-	@RequestMapping("/datatopics/{id}")
-	public Course getOneTopic(@PathVariable String id) {
-		return topicService.getTopic(id);
+		return courseService.getAllTopics();
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/datatopics")
-	public void addTopic(@RequestBody Course topic) {
-		topicService.addTopic(topic);
-	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/datatopics/{id}")
-	public void updateTopic(@RequestBody Course topic, @PathVariable String id) {
-		topicService.updateTopic(id, topic);
-	}
-	
-	@RequestMapping(method=RequestMethod.DELETE, value="/datatopics/{id}")
-	public void deleteTopic(@PathVariable String id) {
-		topicService.deleteTopic(id);
+	@RequestMapping("/datatopics/{topicId}/courses/{id}")
+	public Course getCourse(@PathVariable String id) {
+		return courseService.getCourse(id);
 	}
 
-
+	@RequestMapping(method=RequestMethod.POST, value="/datatopics/{topicId}/courses")
+	public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
+		course.setTopicData(new TopicData(topicId, "", ""));
+		courseService.addCourse(course);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/datatopics/{topicId}/courses/{id}")
+	public void updateCourse(@RequestBody Course course, @PathVariable String topicId) {
+		course.setTopicData(new TopicData(topicId, "", ""));
+		courseService.updateCourse(course);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/datatopics/{topicId}/courses/{id}")
+	public void deleteCourse(@PathVariable String id) {
+		courseService.deleteCourse(id);
+	}
 
 }
 
